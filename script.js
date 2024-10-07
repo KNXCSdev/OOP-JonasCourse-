@@ -94,8 +94,8 @@ const PersonCl1 = class {};
 
 //CLASS DECLARATION
 class PersonCl2 {
-  constructor(firstName, birthYear) {
-    this.firstName = firstName;
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
     this.birthYear = birthYear;
   }
 
@@ -104,15 +104,35 @@ class PersonCl2 {
   calcAge() {
     console.log(2037 - this.birthYear);
   }
+
   greet() {
     console.log(`Hey ${this.firstName}`);
   }
+
+  get age() {
+    return 2037 - this.birthYear;
+  }
+
+  //SET A PROPERTY THAT ALREADY EXIST
+  set fullName(name) {
+    console.log(name);
+    if (name.includes(" ")) this._fullName = name;
+    else alert(`${name} is not a full name!`);
+  }
+
+  get fullName() {
+    return this._fullName;
+  }
+
+  static hey() {
+    console.log("Hey there ");
+  }
 }
 
-const jessica = new PersonCl2("Jessica", 1996);
+const jessica = new PersonCl2("Jessica Davis", 1996);
 console.log(jessica);
 jessica.calcAge();
-
+console.log(jessica.age);
 // PersonCl2.prototype.greet = function () {
 //   console.log(`Hey ${this.firstName}`);
 // };
@@ -124,3 +144,87 @@ jessica.greet();
 //3. The body of the class is always executed in strict mode
 
 //SECTION GETTERS AND SETTERS
+
+// const walter = new PersonCl2("Walter White", 1965);
+
+// const account = {
+//   owner: "Jonas",
+//   movements: [200, 530, 120, 300],
+
+//   get latest() {
+//     return this.movements.slice(-1).pop();
+//   },
+
+//   set latest(mov) {
+//     this.movements.push(mov);
+//   },
+// };
+
+// console.log(account.latest);
+
+// account.latest = 50;
+// console.log(account.movements);
+
+//SECTION STATIC METHODS
+
+// PersonCl2.hey = function () {
+//   console.log("Hey there 👋");
+//   console.log(this);
+// };
+// PersonCl2.hey();
+
+//SECTION OBJECT.CREATE
+
+// const PersonProto = {
+//   calcAge() {
+//     console.log(2037 - this.birthYear);
+//   },
+
+//   init(firstName, birthYear) {
+//     this.firstName = firstName;
+//     this.birthYear = birthYear;
+//   },
+// };
+// const steven = Object.create(PersonProto);
+// steven.name = "Steven";
+// steven.birthYear = 2002;
+
+// const sarah = Object.create(PersonProto);
+// sarah.init("Sarah", 1979);
+// sarah.calcAge();
+
+//CHALLANGE 2
+
+// class CarCl {
+//   constructor(make, speed) {
+//     this.make = make;
+//     this.speed = speed;
+//   }
+
+//   accelerate() {
+//     this.speed += 10;
+//     console.log(`${this.make} is going at ${this.speed}km/h`);
+//   }
+
+//   brake() {
+//     this.speed -= 5;
+//     console.log(`${this.make} is going at ${this.speed}km/h`);
+//   }
+
+//   get speedUS() {
+//     return this.speed / 1.6;
+//   }
+
+//   set speedUS(speed) {
+//     this.speed = speed * 1.6;
+//   }
+// }
+
+// const ford = new CarCl("Ford", 120);
+
+// console.log(ford.speedUS);
+// ford.accelerate();
+// ford.accelerate();
+// ford.brake();
+// ford.speedUS = 50;
+// console.log(ford);
